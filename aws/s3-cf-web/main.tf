@@ -2,6 +2,7 @@ variable "resource_name" {}
 variable "bucket_name" {}
 variable "region" {}
 variable "error_page" {}
+variable "ssl_arn" {}
 
 variable "route53" {
    type = "map"
@@ -56,12 +57,21 @@ resource "aws_cloudfront_distribution" "web_bucket" {
             http_port = 80,
             https_port = 443,
             origin_protocol_policy = "http-only",
-            origin_ssl_protocols = ["SSLv3", "TLSv1", "TLSv1.1", "TLSv1.2"]
+            origin_ssl_protocols = ["TLSv1", "TLSv1.1", "TLSv1.2"]
+            origin_read_timeout = 60
         }
 
 # This is the DNS name of the bucket and the bucket's id
         domain_name = "${aws_s3_bucket.web_bucket.id}.s3-website.${var.region}.amazonaws.com"
         origin_id   = "${aws_s3_bucket.web_bucket.id}"
+    }
+
+# TODO add ssl cert
+    viewer_certificate {
+        #cloudfront_default_certificate = true
+        acm_certificate_arn = "${var.ssl_arn}"
+        ssl_support_method = "sni-only"
+        minimum_protocol_version = "TLSv1"
     }
 
     enabled = true
@@ -92,7 +102,7 @@ resource "aws_cloudfront_distribution" "web_bucket" {
           }
         }
 
-        viewer_protocol_policy = "allow-all"
+        viewer_protocol_policy = "redirect-to-https"
         min_ttl                = 0
         default_ttl            = 3600
         max_ttl                = 86400
@@ -106,10 +116,6 @@ resource "aws_cloudfront_distribution" "web_bucket" {
         }
     }
 
-# TODO add ssl cert
-    viewer_certificate {
-        cloudfront_default_certificate = true
-    }
 }
 
 #
