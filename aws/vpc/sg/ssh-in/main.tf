@@ -1,0 +1,28 @@
+variable "security_group_name" { default = "ssh-in-nhw" }
+variable "source_cidr_blocks" {
+   type = "list"
+   default = [ "0.0.0.0/0" ]
+}
+variable "ipv6_source_cidr_blocks" {
+   type = "list"
+   default = [ "::/0" ]
+}
+
+resource "aws_security_group" "main_security_group" {
+    name = "${var.security_group_name}"
+    description = "SSH in ${var.security_group_name}"
+#    vpc_id = "${var.vpc_id}"
+
+    // allow traffic for TCP ssh
+    ingress {
+        from_port = 22
+        to_port = 22
+        protocol = "tcp"
+        cidr_blocks = ["${var.source_cidr_blocks}"]
+        ipv6_cidr_blocks = ["${var.ipv6_source_cidr_blocks}"]
+    }
+}
+
+output "name" {
+   value = "${aws_security_group.main_security_group.name}"
+}
