@@ -1,10 +1,11 @@
 variable "architecture" { default = "x86_64" }
 variable "size"         { default = "8"          }
 variable "description"  { default = "Amazon Linux AMI*" }
+variable "owner"        { default = "*" }
 
 data "aws_ami" "nat_ami" {
    most_recent = true
-   owners = ["self","amazon"]
+   owners = [ "${var.owner}" ]
 
    filter {
       name   = "architecture"
