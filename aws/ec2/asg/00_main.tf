@@ -3,8 +3,8 @@
 #
 variable "ami_id" {}
 variable "instance_type" { default = "t2.micro" }
-variable "availability_zones" []
-variable "security_groups" []
+variable "availability_zones" { type = "list" }
+variable "security_groups" { type = "list" }
 variable "min_size" { default = 1 }
 variable "max_size" { default = 1 }
 variable "desired_capacity" { default = 1 }
