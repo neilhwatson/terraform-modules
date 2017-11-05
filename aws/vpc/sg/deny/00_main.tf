@@ -1,4 +1,4 @@
-variable "security_group_name" { default = "default" }
+variable "security_group_name" { default = "mydefault" }
 variable "tag"                 { type = "map" }
 
 resource "aws_security_group" "sg01" {
