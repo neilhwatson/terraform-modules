@@ -4,7 +4,6 @@
 variable "ami_id" {}
 variable "instance_type" { default = "t2.micro" }
 variable "vpc_zone_ids" { type = "list" }
-variable "azs" { type = "list" }
 variable "security_groups" { type = "list" }
 variable "min_size" { default = 1 }
 variable "max_size" { default = 1 }
