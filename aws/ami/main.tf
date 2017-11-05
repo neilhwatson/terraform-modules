@@ -1,5 +1,5 @@
 variable "architecture" { default = "x86_64" }
-variable "size"         { default = "8"          }
+variable "size"         { default = "*"          }
 variable "description"  { default = "Amazon Linux AMI*" }
 variable "owner"        { default = "*" }
 
