@@ -15,14 +15,10 @@ data "aws_ami" "nat_ami" {
       name = "name"
       values = [ "${var.name}" ]
    }
-#   filter {
-#      name   = "block-device-mapping.volume-size"
-#      values = ["${var.size}"]
-#   }
-#   filter {
-#      name   = "description"
-#      values = ["${var.description}"]
-#   }
+   filter {
+      name   = "block-device-mapping.volume-size"
+      values = ["${var.size}"]
+   }
 }
 
 output "image_id" {
