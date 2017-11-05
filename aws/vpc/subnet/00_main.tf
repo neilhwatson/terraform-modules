@@ -2,12 +2,14 @@ variable "tag" { type = "map" }
 variable "cidr_block" {}
 variable "ipv6_cidr_block" {}
 variable "vpc_id" {}
+variable "az" {}
 
 resource "aws_subnet" "subnet01" {
-   vpc_id          = "${var.vpc_id}"
-   cidr_block      = "${var.cidr_block}"
-   ipv6_cidr_block = "${var.ipv6_cidr_block}"
-   tags            = "${var.tag}"
+   vpc_id            = "${var.vpc_id}"
+   cidr_block        = "${var.cidr_block}"
+   ipv6_cidr_block   = "${var.ipv6_cidr_block}"
+   availability_zone = "${var.az}"
+   tags              = "${var.tag}"
 }
 
 output "id" {
