@@ -35,25 +35,3 @@ resource "aws_autoscaling_group" "asg01" {
     desired_capacity = "${var.desired_capacity}"
 
 }
-# TODO security group for ssh and cfengine in
-
-resource "aws_instance" "web" {
-  ami           = "${data.aws_ami.ecs.id}"
-  instance_type = "t2.micro"
-  key_name      = "${var.ssh_key}"
-  #vpc_security_group_ids = 
-  subnet_id     = "${var.subnet}"
-#  iam_instance_profile
-# ipv6_address_count
-# ipv6_addresses
-  
-
-  #user_data     =
-
-  tags {
-    Name = "oort"
-    purpose = "cfbot and ssh jump"
-
-  }
-}
-
