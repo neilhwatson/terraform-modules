@@ -13,7 +13,7 @@ data "aws_ami" "nat_ami" {
    }
    filter {
       name = "name"
-      value = "${var.name}"
+      values = [ "${var.name}" ]
    }
 #   filter {
 #      name   = "block-device-mapping.volume-size"
