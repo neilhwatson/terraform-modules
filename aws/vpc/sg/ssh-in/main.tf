@@ -14,6 +14,7 @@ resource "aws_security_group" "sg01" {
     name        = "${var.security_group_name}"
     description = "SSH in ${var.security_group_name}"
     vpc_id      = "${var.vpc_id}"
+    tags        = "${var.tag}"
 
     // allow traffic for TCP ssh
     ingress {
