@@ -10,7 +10,7 @@ variable "ipv6_source_cidr_blocks" {
    default = [ "::/0" ]
 }
 
-resource "aws_security_group" "main_security_group" {
+resource "aws_security_group" "sg01" {
     name = "${var.security_group_name}"
     description = "SSH in ${var.security_group_name}"
     vpc_id = "${var.vpc_id}"
@@ -26,5 +26,5 @@ resource "aws_security_group" "main_security_group" {
 }
 
 output "name" {
-   value = "${aws_security_group.main_security_group.name}"
+   value = "${aws_security_group.sg01.name}"
 }
