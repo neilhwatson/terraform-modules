@@ -1,8 +1,7 @@
-
 #
 # Variables
 #
-variable "ami_name" = { default = "amzn-ami*ecs-optimized" }
+variable "ami_id" = {}
 variable "instance_type" { default = "t2.micro" }
 variable "availability_zones" []
 variable "security_groups" []
@@ -17,36 +16,18 @@ variable "subnet" {}
 variable "ssh_key" {}
 #variable "iam_instance_profile" {}
 
-data "aws_ami" "ecs" {
-  most_recent = true
-
-  owners = [ "amazon" ]
-
-  filter {
-    name   = "name"
-    values = ["${var.ami_name}"]
-  }
-
-  filter {
-     name = "root-device-type"
-     values = [ "ebs" ]
-
-  }
+resource "aws_launch_configuration" "launch_conf01" {
+    image_id        = "${var.ami_id}"
+    instance_type   = "${var.instance_type}"
+    user_data       = "${file("${var.user_data_file}")}"
+    key_name        = "${var.ssh_key}"
+    security_groups = "${var.security_groups}"
 
 }
 
-resource "aws_launch_configuration" "launch_conf" {
-    #name_prefix = "terraform-lc-example-"
-    image_id = "${data.aws_ami.ecs.id}"
-    instance_type = "${var.instance_type}"
-    user_data = "${file("${var.user_data_file}")}"
-
-# TODO security_groups
-}
-
-resource "aws_autoscaling_group" "bar" {
-    name = "terraform-asg-example-${aws_launch_configuration.launch_conf.name}"
-    launch_configuration = "${aws_launch_configuration.launch_conf.name}"
+resource "aws_autoscaling_group" "asg01" {
+    name = "terraform-asg-example-${aws_launch_conf01iguration.launch_conf01.name}"
+    launch_conf01iguration = "${aws_launch_conf01iguration.launch_conf01.name}"
 
     availability_zones = "${var.availability_zones}"
     min_size = "${var.min_size}"
