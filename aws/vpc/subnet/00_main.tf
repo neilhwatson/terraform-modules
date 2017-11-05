@@ -1,5 +1,6 @@
 variable "tag" { type = "map" }
 variable "cidr_block" {}
+variable "ipv6_cidr_block" {}
 variable "vpc_id" {}
 
 resource "aws_subnet" "subnet01" {
