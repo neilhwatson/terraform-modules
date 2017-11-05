@@ -1,6 +1,6 @@
 variable "architecture" { default = "x86_64" }
 variable "size"         { default = "*"          }
-variable "description"  { default = "Amazon Linux AMI*" }
+variable "name"         { default = "Amazon Linux AMI*" }
 variable "owner"        { default = "*" }
 
 data "aws_ami" "nat_ami" {
@@ -10,6 +10,10 @@ data "aws_ami" "nat_ami" {
    filter {
       name   = "architecture"
       values = ["${var.architecture}"]
+   }
+   filter {
+      name = "name"
+      value = "${var.name}"
    }
 #   filter {
 #      name   = "block-device-mapping.volume-size"
