@@ -1,4 +1,6 @@
-variable "security_group_name" { default = "ssh-in-nhw" }
+variable "security_group_name" { default = "ssh-in" }
+variable "tag"                 { type = "map" }
+variable "vpc_id"              {}
 variable "source_cidr_blocks" {
    type = "list"
    default = [ "0.0.0.0/0" ]
@@ -11,7 +13,7 @@ variable "ipv6_source_cidr_blocks" {
 resource "aws_security_group" "main_security_group" {
     name = "${var.security_group_name}"
     description = "SSH in ${var.security_group_name}"
-#    vpc_id = "${var.vpc_id}"
+    vpc_id = "${var.vpc_id}"
 
     // allow traffic for TCP ssh
     ingress {
