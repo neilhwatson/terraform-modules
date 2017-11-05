@@ -28,12 +28,12 @@ resource "aws_launch_configuration" "launch_conf01" {
 }
 
 resource "aws_autoscaling_group" "asg01" {
-    name = "terraform-asg-example-${aws_launch_conf01iguration.launch_conf01.name}"
-    launch_conf01iguration = "${aws_launch_conf01iguration.launch_conf01.name}"
+    launch_configuration = "${aws_launch_configuration.launch_conf01.name}"
 
     vpc_zone_identifier = "${var.vpc_zone_ids}"
     min_size = "${var.min_size}"
     max_size = "${var.max_size}"
     desired_capacity = "${var.desired_capacity}"
+    tags            = "${var.tag}"
 
 }
