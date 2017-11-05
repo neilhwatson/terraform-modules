@@ -26,6 +26,9 @@ resource "aws_security_group" "sg01" {
     }
 }
 
+output "id" {
+   value = "${aws_security_group.sg01.id}"
+}
 output "name" {
    value = "${aws_security_group.sg01.name}"
 }
