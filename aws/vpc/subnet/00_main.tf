@@ -10,6 +10,9 @@ resource "aws_subnet" "subnet01" {
    tags            = "${var.tag}"
 }
 
+output "id" {
+   value = "${aws_subnet.subnet01.id}"
+}
 output "cidr_block" {
    value = "${aws_subnet.subnet01.cidr_block}"
 }
