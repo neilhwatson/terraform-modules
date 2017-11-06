@@ -5,11 +5,12 @@ variable "vpc_id" {}
 variable "az" {}
 
 resource "aws_subnet" "subnet01" {
-   vpc_id            = "${var.vpc_id}"
-   cidr_block        = "${var.cidr_block}"
-   ipv6_cidr_block   = "${var.ipv6_cidr_block}"
-   availability_zone = "${var.az}"
-   tags              = "${var.tag}"
+   vpc_id                          = "${var.vpc_id}"
+   cidr_block                      = "${var.cidr_block}"
+   ipv6_cidr_block                 = "${var.ipv6_cidr_block}"
+   availability_zone               = "${var.az}"
+   assign_ipv6_address_on_creation = "true"
+   tags                            = "${var.tag}"
 }
 
 output "id" {

@@ -1,16 +1,18 @@
 #
 # Variables
 #
-variable "ami_id"                { }
-variable "instance_type"         { default = "t2.micro" }
-variable "vpc_zone_ids"          { type = "list" }
-variable "security_groups"       { type = "list" }
-variable "min_size"              { default = 1 }
-variable "max_size"              { default = 2 }
-variable "desired_capacity"      { default = 1 }
-variable "user_data_file"        { }
-variable "tag"                   { type = "map" }
-variable "ssh_key"               { }
+variable "ami_id"              { }
+variable "instance_type"       { default = "t2.micro" }
+variable "vpc_zone_ids"        { type = "list" }
+variable "security_groups"     { type = "list" }
+variable "min_size"            { default = 1 }
+variable "max_size"            { default = 2 }
+variable "desired_capacity"    { default = 1 }
+variable "user_data_file"      { }
+variable "tag"                 { type = "map" }
+variable "ssh_key"             { }
+variable "associate_public_ip" { default = "false" }
+
 #variable "iam_instance_profile" { }
 
 resource "aws_launch_configuration" "launch_conf01" {
