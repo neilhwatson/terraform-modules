@@ -24,6 +24,13 @@ resource "aws_security_group" "sg01" {
         cidr_blocks      = ["${var.source_cidr_blocks}"]
         ipv6_cidr_blocks = ["${var.ipv6_source_cidr_blocks}"]
     }
+    ingress {
+        from_port        = -1
+        to_port          = -1
+        protocol         = "icmp"
+        cidr_blocks      = ["${var.source_cidr_blocks}"]
+        ipv6_cidr_blocks = ["${var.ipv6_source_cidr_blocks}"]
+    }
 }
 
 output "id" {
