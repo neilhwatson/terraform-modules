@@ -1,6 +1,5 @@
 variable "architecture"        { default = "x86_64" }
 variable "description"         { default = "*" }
-#variable "name"                { default = "Amazon Linux AMI*" }
 variable "owner"               { default = "*" }
 variable "root_device_type"    { default = "*" }
 variable "virtualization_type" { default = "*" }
@@ -16,10 +15,6 @@ data "aws_ami" "ami01" {
       name = "description"
       values = [ "${var.description}" ]
    }
-#   filter {
-#      name = "name"
-#      values = [ "${var.name}" ]
-#   }
    
    owners = [ "${var.owner}" ]
 
