@@ -2,10 +2,10 @@ variable "architecture"        { default = "x86_64" }
 variable "description"         { default = "*" }
 variable "name"                { default = "Amazon Linux AMI*" }
 variable "owner"               { default = "*" }
-variable "root-device-type"    { default = "*" }
-variable "virtualization-type" { default = "*" }
+variable "root_device_type"    { default = "*" }
+variable "virtualization_type" { default = "*" }
 
-data "aws_ami" "nat_ami" {
+data "aws_ami" "ami01" {
    most_recent = true
 
    filter {
@@ -25,14 +25,14 @@ data "aws_ami" "nat_ami" {
 
    filter {
       name   = "root_device_type"
-      values = ["${var.root-device-type}"]
+      values = ["${var.root_device_type}"]
    }
    filter {
       name   = "virtualization_type"
-      values = ["${var.virtualization-type}"]
+      values = ["${var.virtualization_type}"]
    }
 }
 
 output "image_id" {
-   value = "${data.aws_ami.nat_ami.image_id}"
+   value = "${data.aws_ami.ami01.image_id}"
 }
