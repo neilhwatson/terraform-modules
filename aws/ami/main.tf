@@ -24,11 +24,11 @@ data "aws_ami" "ami01" {
    owners = [ "${var.owner}" ]
 
    filter {
-      name   = "root_device_type"
+      name   = "root-device-type"
       values = ["${var.root_device_type}"]
    }
    filter {
-      name   = "virtualization_type"
+      name   = "virtualization-type"
       values = ["${var.virtualization_type}"]
    }
 }
