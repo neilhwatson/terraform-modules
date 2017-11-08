@@ -13,3 +13,6 @@ output "vpc01_id" {
 output "ipv6_cidr_block" {
    value = "${aws_vpc.vpc01.ipv6_cidr_block}"
 }
+output "default_sg_id" {
+   value = "${aws_vpc.vpc01.default_security_group_id}"
+}
