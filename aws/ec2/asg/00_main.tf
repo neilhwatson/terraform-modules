@@ -11,18 +11,20 @@ variable "desired_capacity"    { default = 1 }
 variable "user_data_file"      { }
 variable "tag"                 { type = "map" }
 variable "ssh_key"             { }
+variable "instance_profile"    { }
 variable "associate_public_ip" { default = "false" }
 
 #variable "iam_instance_profile" { }
 
 resource "aws_launch_configuration" "launch_conf01" {
-   image_id        = "${var.ami_id}"
-   instance_type   = "${var.instance_type}"
-   user_data       = "${file("${var.user_data_file}")}"
-   key_name        = "${var.ssh_key}"
-   security_groups = [ "${var.security_groups}" ]
+   image_id                    = "${var.ami_id}"
+   instance_type               = "${var.instance_type}"
+   user_data                   = "${file("${var.user_data_file}")}"
+   key_name                    = "${var.ssh_key}"
+   security_groups             = [ "${var.security_groups}" ]
+   iam_instance_profile        = "${instance_profile}"
    associate_public_ip_address = "true"
-#    tags            = "${var.tag}"
+#    tags                      = "${var.tag}"
 
    lifecycle { create_before_destroy = true }
 }
