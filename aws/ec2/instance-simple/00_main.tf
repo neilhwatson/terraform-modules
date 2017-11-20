@@ -8,7 +8,7 @@ variable "instance_type"       { default = "t2.micro" }
 variable "ipv6_count"          { default = 1 }
 variable "profile"             { }
 variable "ssh_key"             { }
-variable "tags"                { }
+variable "tags"                { type = "map" }
 
 # TODO security group for ssh and cfengine in
 
