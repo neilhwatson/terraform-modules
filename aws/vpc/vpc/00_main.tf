@@ -4,6 +4,7 @@ variable "cidr_block" {}
 resource "aws_vpc" "vpc01" {
    cidr_block                       = "${var.cidr_block}"
    assign_generated_ipv6_cidr_block = "true"
+   enable_dns_hostnames             = "true"
    tags                             = "${var.tag}"
 }
 
