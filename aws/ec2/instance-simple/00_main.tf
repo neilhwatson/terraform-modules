@@ -9,6 +9,7 @@ variable "ipv6_count"          { default = 1 }
 variable "profile"             { }
 variable "ssh_key"             { }
 variable "user_data_file"      { }
+variable "security_groups"     { type = "list" }
 # Passing a map of tags does not work in TF. Waiting on improvement.
 #variable "tags"                { type = "map" }
 
@@ -20,6 +21,7 @@ resource "aws_instance" "instance01" {
    ipv6_address_count          = "${var.ipv6_count}"
    key_name                    = "${var.ssh_key}"
    user_data                   = "${file("${var.user_data_file}")}"
+   security_groups             = "${var.security_groups}"
 }
 
 output "name" {
