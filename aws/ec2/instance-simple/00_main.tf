@@ -13,13 +13,13 @@ variable "user_data_file"      { }
 #variable "tags"                { type = "map" }
 
 resource "aws_instance" "instance01" {
-ami                         = "${var.ami}"
-associate_public_ip_address = "${var.associate_public_ip}"
-iam_instance_profile        = "${var.profile}"
-instance_type               = "${var.instance_type}"
-ipv6_address_count          = "${var.ipv6_count}"
-key_name                    = "${var.ssh_key}"
-user_data                   = "${file("${var.user_data_file}")}"
+   ami                         = "${var.ami}"
+   associate_public_ip_address = "${var.associate_public_ip}"
+   iam_instance_profile        = "${var.profile}"
+   instance_type               = "${var.instance_type}"
+   ipv6_address_count          = "${var.ipv6_count}"
+   key_name                    = "${var.ssh_key}"
+   user_data                   = "${file("${var.user_data_file}")}"
 }
 
 output "name" {
