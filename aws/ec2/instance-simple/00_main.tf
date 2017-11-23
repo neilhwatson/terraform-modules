@@ -21,7 +21,7 @@ resource "aws_instance" "instance01" {
    ipv6_address_count          = "${var.ipv6_count}"
    key_name                    = "${var.ssh_key}"
    user_data                   = "${file("${var.user_data_file}")}"
-   security_groups             = [ "${var.security_groups}" ]
+   vpc_security_groups_ids     = [ "${var.security_groups}" ]
 }
 
 output "name" {
