@@ -23,7 +23,7 @@ resource "aws_instance" "instance01" {
    key_name                    = "${var.ssh_key}"
    subnet_id                   = "${var.subnet_id}"
    user_data                   = "${file("${var.user_data_file}")}"
-   vpc_security_groups_ids     = [ "${var.security_groups}" ]
+   vpc_security_group_ids      = [ "${var.security_groups}" ]
 }
 
 output "name" {
