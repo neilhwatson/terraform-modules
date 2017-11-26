@@ -29,3 +29,6 @@ resource "aws_instance" "instance01" {
 output "name" {
    value = "${aws_instance.instance01.public_dns}"
 }
+output "id" {
+   value = "${aws_instance.instance01.id}"
+}
