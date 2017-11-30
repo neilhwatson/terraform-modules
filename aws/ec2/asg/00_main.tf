@@ -8,7 +8,7 @@ variable "security_groups"     { type = "list" }
 variable "min_size"            { default = 1 }
 variable "max_size"            { default = 2 }
 variable "desired_capacity"    { default = 1 }
-variable "user_data_file"      { }
+variable "user_data"           { }
 variable "tag"                 { type = "map" }
 variable "ssh_key"             { }
 variable "instance_profile"    { }
@@ -19,7 +19,7 @@ variable "associate_public_ip" { default = "false" }
 resource "aws_launch_configuration" "launch_conf01" {
    image_id                    = "${var.ami_id}"
    instance_type               = "${var.instance_type}"
-   user_data                   = "${file("${var.user_data_file}")}"
+   user_data                   = "${var.user_data}"
    key_name                    = "${var.ssh_key}"
    security_groups             = [ "${var.security_groups}" ]
    iam_instance_profile        = "${var.instance_profile}"
