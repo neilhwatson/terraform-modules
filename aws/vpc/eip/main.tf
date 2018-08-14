@@ -1,5 +1,8 @@
+variable "tag" { type = "map" }
+
 resource "aws_eip" "eip01" { 
-  vpc = true
+  vpc  = true
+  tags = "${var.tag}"
 }
 
 output "eip_id" {
