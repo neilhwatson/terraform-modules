@@ -22,7 +22,7 @@ resource "aws_launch_configuration" "launch_conf01" {
    instance_type               = var.instance_type
    user_data                   = var.user_data
    key_name                    = var.ssh_key
-   security_groups             = [ var.security_groups ]
+   security_groups             = var.security_groups
    iam_instance_profile        = var.instance_profile
    associate_public_ip_address = "true"
 #    tags                      = var.tag
