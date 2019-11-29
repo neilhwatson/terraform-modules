@@ -52,7 +52,7 @@ resource "aws_cloudfront_distribution" "web_bucket" {
 	tags = {
 		layer = "terraform"
 	}
-    origin = {
+    origin {
         custom_origin_config = {
             http_port = 80
             https_port = 443
@@ -67,7 +67,7 @@ resource "aws_cloudfront_distribution" "web_bucket" {
     }
 
 # TODO add ssl cert
-    viewer_certificate = {
+    viewer_certificate {
         #cloudfront_default_certificate = true
         acm_certificate_arn = var.ssl_arn
         ssl_support_method = "sni-only"
