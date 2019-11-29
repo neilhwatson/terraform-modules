@@ -3,13 +3,13 @@
 #
 variable "ami_id"              { }
 variable "instance_type"       { default = "t2.micro" }
-variable "vpc_zone_ids"        { type = "list" }
-variable "security_groups"     { type = "list" }
+variable "vpc_zone_ids"        { type = list }
+variable "security_groups"     { type = list }
 variable "min_size"            { default = 1 }
 variable "max_size"            { default = 2 }
 variable "desired_capacity"    { default = 1 }
 variable "user_data"           { }
-variable "tag"                 { type = "map" }
+variable "tag"                 { type = map }
 variable "ssh_key"             { }
 variable "instance_profile"    { }
 variable "associate_public_ip" { default = "false" }
